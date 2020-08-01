@@ -1,6 +1,7 @@
 import 'package:chewie/chewie.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:video_player/video_player.dart';
 
 class Player extends StatefulWidget {
@@ -16,68 +17,78 @@ class Player extends StatefulWidget {
 }
 
 class _ChewieDemoState extends State<Player> {
-  VideoPlayerController _videoPlayerController1;
+  VideoPlayerController _videoPlayerController;
   ChewieController _chewieController;
   final String url;
 
   _ChewieDemoState({this.url});
 
+  initializePlayerController() async {
+    await _videoPlayerController.initialize();
+    await _videoPlayerController.play();
+
+    setState(() {
+      _chewieController = ChewieController(
+        videoPlayerController: _videoPlayerController,
+        autoPlay: true,
+        aspectRatio: _videoPlayerController.value.aspectRatio,
+        allowFullScreen: true,
+        allowedScreenSleep: false,
+        deviceOrientationsAfterFullScreen: [
+          DeviceOrientation.portraitUp,
+          DeviceOrientation.portraitDown,
+          DeviceOrientation.landscapeLeft,
+          DeviceOrientation.landscapeRight
+        ],
+        fullScreenByDefault: true,
+        systemOverlaysAfterFullScreen: [
+          SystemUiOverlay.bottom,
+          SystemUiOverlay.top
+        ],
+        placeholder: Container(
+          color: Colors.black,
+        ),
+        autoInitialize: true,
+      );
+
+      _chewieController.enterFullScreen();
+    });
+  }
+
   @override
   void initState() {
     super.initState();
-    _videoPlayerController1 = VideoPlayerController.network(url);
 
-    _chewieController = ChewieController(
-      videoPlayerController: _videoPlayerController1,
-      aspectRatio: 3 / 2,
-      autoPlay: true,
-      looping: true,
-      // Try playing around with some of these other options:
+    _videoPlayerController = VideoPlayerController.network(url);
 
-      // showControls: false,
-      // materialProgressColors: ChewieProgressColors(
-      //   playedColor: Colors.red,
-      //   handleColor: Colors.blue,
-      //   backgroundColor: Colors.grey,
-      //   bufferedColor: Colors.lightGreen,
-      // ),
-      // placeholder: Container(
-      //   color: Colors.grey,
-      // ),
-      // autoInitialize: true,
-    );
+    initializePlayerController();
   }
 
   @override
   void dispose() {
-    _videoPlayerController1.dispose();
+    _videoPlayerController.dispose();
     _chewieController.dispose();
+
     super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text(widget.title),
-      ),
-      body: Column(
-        children: <Widget>[
-          Expanded(
-            child: Center(
-              child: Chewie(
-                controller: _chewieController,
-              ),
-            ),
-          ),
-          FlatButton(
-            onPressed: () {
-              _chewieController.enterFullScreen();
-            },
-            child: Text('Fullscreen'),
-          ),
-        ],
-      ),
-    );
+    return Material(
+        elevation: 0,
+        child: (_chewieController == null)
+            ? Center(child: CircularProgressIndicator())
+            : (Container(
+                child: Column(
+                children: <Widget>[
+                  Expanded(
+                    child: Center(
+                      child: Chewie(
+                        controller: _chewieController,
+                      ),
+                    ),
+                  ),
+                ],
+              ))));
   }
 }

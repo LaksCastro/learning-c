@@ -19,7 +19,7 @@ class ResourceTile extends StatelessWidget {
         onTap: () =>
             Navigator.push(context, MaterialPageRoute(builder: resource.link)),
         child: Container(
-            margin: EdgeInsets.only(bottom: isLast ? 0 : 20),
+            margin: EdgeInsets.only(bottom: isLast ? 0 : 10),
             padding: EdgeInsets.all(10),
             color: Colors.black.withOpacity(.05),
             child: Row(crossAxisAlignment: CrossAxisAlignment.start, children: [
