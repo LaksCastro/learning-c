@@ -16,8 +16,9 @@ dependencies:
   flutter_mobx: ^1.1.0+1
   provider: ^4.3.1
   get_it: ^4.0.4
-  video_player: ^0.10.11+2
+  video_player: ">=0.10.11+2 <2.0.0"
   chewie: ^0.9.10
+  shared_preferences: ^0.5.8
   flutter:
     sdk: flutter
 

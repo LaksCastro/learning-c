@@ -39,7 +39,7 @@ class AnimeTvApi {
 
     String urlHd = data[0]["locationsd"] ?? "";
 
-    VideoData videoData = VideoData(
+    final videoData = VideoData(
         episodeId: episodeId,
         url: data[0]["location"],
         urlHd: urlHd.length > 5 ? urlHd : null);
