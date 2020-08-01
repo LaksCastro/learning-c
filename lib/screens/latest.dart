@@ -14,11 +14,11 @@ class Latest extends StatefulWidget {
 }
 
 class _LatestState extends State<Latest> {
-  final latestController = getIt<LatestController>();
+  final _latestController = getIt<LatestController>();
 
   @override
   void initState() {
-    latestController.loadEpisodes();
+    _latestController.loadEpisodes();
 
     super.initState();
   }
@@ -31,14 +31,14 @@ class _LatestState extends State<Latest> {
   @override
   Widget build(BuildContext context) {
     return Container(child: Observer(builder: (_) {
-      if (latestController.loading) {
+      if (_latestController.loading) {
         return Center(child: CircularProgressIndicator());
       }
 
       return ResourceList(
-          resources: latestController.episodes.toList(),
+          resources: _latestController.episodes.toList(),
           cardLabel: "LANÇAMENTOS",
-          onRefresh: latestController.loadEpisodes);
+          onRefresh: _latestController.loadEpisodes);
     }));
   }
 }

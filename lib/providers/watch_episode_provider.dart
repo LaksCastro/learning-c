@@ -2,7 +2,7 @@ import 'package:anime_dart/models/barrel.dart';
 import 'package:anime_dart/services/anime_tv_api.dart';
 
 class WatchEpisodeProvider {
-  static final AnimeTvApi _animeTvApi = AnimeTvApi();
+  static final _animeTvApi = AnimeTvApi();
 
   Future<VideoResource> getVideo(String episodeId) async {
     try {

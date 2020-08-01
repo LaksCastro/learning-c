@@ -6,22 +6,21 @@ import 'package:video_player/video_player.dart';
 
 class Player extends StatefulWidget {
   final String url;
-  final String title;
 
-  Player({this.title = 'Chewie Demo', this.url});
+  Player({this.url});
 
   @override
   State<StatefulWidget> createState() {
-    return _ChewieDemoState(url: url);
+    return _PlayerState(url: url);
   }
 }
 
-class _ChewieDemoState extends State<Player> {
+class _PlayerState extends State<Player> {
   VideoPlayerController _videoPlayerController;
   ChewieController _chewieController;
   final String url;
 
-  _ChewieDemoState({this.url});
+  _PlayerState({this.url});
 
   initializePlayerController() async {
     await _videoPlayerController.initialize();

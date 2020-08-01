@@ -1,17 +1,20 @@
 import 'package:anime_dart/models/barrel.dart';
-import 'package:anime_dart/models/watch_episode_args.dart';
-import 'package:anime_dart/screens/barrel.dart';
-
 import 'package:anime_dart/services/anime_tv_api.dart';
 
-class LatestProvider {
+import 'package:diacritic/diacritic.dart';
+
+class SearchProvider {
   static final _animeTvApi = AnimeTvApi();
 
-  Future<List<Resource>> getLatest() async {
+  String getKeyword(String text){
+    return removeDiacritics(text.replaceAll(" ", "_"));
+  }
+
+  Future<List<Resource>> searchByKeyword(String keyword) async {
     try {
       List<Resource> resources = [];
 
-      final resourcesData = await LatestProvider._animeTvApi.getLatest();
+      final resourcesData = await LatestProvider._animeTvApi.searchByKeyword(keyword);
 
       for (final resourceData in resourcesData) {
         resources.add(

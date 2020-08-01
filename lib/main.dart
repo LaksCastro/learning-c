@@ -1,3 +1,4 @@
+import 'package:anime_dart/screens/search.dart';
 import 'package:flutter/material.dart';
 
 import "package:anime_dart/get_it.dart";
@@ -52,24 +53,13 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title:
-              Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
-            Text(widget.title,
-                style: TextStyle(
-                    color: Theme.of(context)
-                        .primaryTextTheme
-                        .bodyText1
-                        .color
-                        .withOpacity(.60))),
-            GestureDetector(
-                onTap: () => print("Procurar"),
-                child: Icon(OMIcons.search,
-                    color: Theme.of(context)
-                        .primaryTextTheme
-                        .bodyText1
-                        .color
-                        .withOpacity(.60)))
-          ]),
+          title: Text(widget.title,
+              style: TextStyle(
+                  color: Theme.of(context)
+                      .primaryTextTheme
+                      .bodyText1
+                      .color
+                      .withOpacity(.60))),
           automaticallyImplyLeading: false,
           bottom: TabBar(
             indicatorColor: Colors.white,
@@ -87,6 +77,13 @@ class _MyHomePageState extends State<MyHomePage> {
           children: [
             for (final tab in MainTabs.tabs) tab.builder(context),
           ],
-        ));
+        ),
+        floatingActionButton: FloatingActionButton(
+            foregroundColor: Colors.white,
+            onPressed: () {
+              Navigator.push(
+                  context, MaterialPageRoute(builder: (_) => Search()));
+            },
+            child: Icon(Icons.search)));
   }
 }

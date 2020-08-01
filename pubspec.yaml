@@ -19,6 +19,7 @@ dependencies:
   video_player: ">=0.10.11+2 <2.0.0"
   chewie: ^0.9.10
   shared_preferences: ^0.5.8
+  diacritic: ^0.1.1
   flutter:
     sdk: flutter
 

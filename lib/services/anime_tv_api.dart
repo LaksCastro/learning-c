@@ -1,4 +1,5 @@
 import "dart:convert";
+import "dart:async";
 
 import 'package:http/http.dart' as http;
 
@@ -45,5 +46,28 @@ class AnimeTvApi {
         urlHd: urlHd.length > 5 ? urlHd : null);
 
     return videoData;
+  }
+
+  Future<List<ResourceData>> searchByKeyword(String keyword){
+    try {
+       
+    final response =
+        await http.get("$_baseUrl?search=$keyword", headers: AnimeTvApi.httpHeaders);
+
+    final data = json.decode(response.body.substring(3)) as List;
+
+    List<ResourceData> resources = [];
+
+    for (final element in data) {
+      resources.add(ResourceData(
+          imageUrl: "$_imageBaseUrl${element["category_image"]}",
+          label: element["category_name"],
+          id: element["id"]));
+    }
+
+    return resources;
+    } catch(e){
+      return [];
+    }
   }
 }
