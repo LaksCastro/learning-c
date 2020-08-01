@@ -8,7 +8,7 @@ class SearchController = _SearchControllerBase with _$SearchController;
 
 abstract class _SearchControllerBase with Store {
   final _provider = SearchProvider();
-  
+
   @observable
   String text = "";
 
@@ -18,11 +18,22 @@ abstract class _SearchControllerBase with Store {
   @computed
   bool get waitingType => text == "";
 
+  @computed
+  bool get notFound => text != "" && results.length == 0;
+
   @action
   setText(value) {
     text = value;
   }
 
   @action
-  loadResults() {}
+  loadResults() async {
+    final keyword = _provider.getKeyword(text);
+
+    final searchedResources = await _provider.searchByKeyword(keyword);
+
+    runInAction(() {
+      results.addAll(ObservableList<Resource>.of(searchedResources));
+    });
+  }
 }
