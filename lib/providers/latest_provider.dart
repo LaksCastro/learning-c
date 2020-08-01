@@ -5,13 +5,13 @@ import 'package:anime_dart/screens/barrel.dart';
 import 'package:anime_dart/services/anime_tv_api.dart';
 
 class LatestProvider {
-  static final AnimeTvApi animeTvApi = AnimeTvApi();
+  static final AnimeTvApi _animeTvApi = AnimeTvApi();
 
   Future<List<Resource>> getLatest() async {
     try {
       List<Resource> resources = [];
 
-      final resourcesData = await LatestProvider.animeTvApi.getLatest();
+      final resourcesData = await LatestProvider._animeTvApi.getLatest();
 
       for (final resourceData in resourcesData) {
         resources.add(

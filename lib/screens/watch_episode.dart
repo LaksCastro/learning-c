@@ -1,3 +1,4 @@
+import 'package:anime_dart/screens/player.dart';
 import 'package:anime_dart/services/anime_tv_api.dart';
 import 'package:anime_dart/theme/main.dart';
 import 'package:cached_network_image/cached_network_image.dart';
@@ -92,7 +93,12 @@ class WatchEpisodeState extends State<WatchEpisode> {
                       child: Column(children: [
                         RippleButton(
                             color: AppTheme.primaryColor,
-                            onTap: () => {},
+                            onTap: () {
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (_) => ChewieDemo()));
+                            },
                             label: "Assistir em HD"),
                         RippleButton(
                             color: Colors.blue[600],
