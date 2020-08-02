@@ -54,6 +54,20 @@ mixin _$AnimeDetailsController on _AnimeDetailsControllerBase, Store {
     return _$loadDetailsAsyncAction.run(() => super.loadDetails(animeId));
   }
 
+  final _$_AnimeDetailsControllerBaseActionController =
+      ActionController(name: '_AnimeDetailsControllerBase');
+
+  @override
+  dynamic dispose() {
+    final _$actionInfo = _$_AnimeDetailsControllerBaseActionController
+        .startAction(name: '_AnimeDetailsControllerBase.dispose');
+    try {
+      return super.dispose();
+    } finally {
+      _$_AnimeDetailsControllerBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
   @override
   String toString() {
     return '''

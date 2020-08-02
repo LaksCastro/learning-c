@@ -42,7 +42,6 @@ class _WatchEpisodeState extends State<WatchEpisode> {
     return Scaffold(
         appBar: AppBar(title: Text(args.label)),
         body: SingleChildScrollView(
-            child: SingleChildScrollView(
           child: ConstrainedBox(
             constraints: BoxConstraints(
               minHeight: 0,
@@ -56,6 +55,6 @@ class _WatchEpisodeState extends State<WatchEpisode> {
               ),
             ),
           ),
-        )));
+        ));
   }
 }

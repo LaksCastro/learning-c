@@ -22,7 +22,7 @@ abstract class _AnimeDetailsControllerBase with Store {
   loadDetails(String animeId) async {
     final animeDetails = await _provider.detailsOf(animeId);
 
-    if (details == null) {
+    if (animeDetails == null) {
       return runInAction(() {
         error = true;
         details = null;
@@ -30,8 +30,14 @@ abstract class _AnimeDetailsControllerBase with Store {
     }
 
     runInAction(() {
-      error = false;
       details = animeDetails;
+      error = false;
     });
+  }
+
+  @action
+  dispose() {
+    details = null;
+    error = false;
   }
 }

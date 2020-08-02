@@ -24,9 +24,12 @@ class _AnimeDetailsState extends State<AnimeDetails> {
   @override
   void initState() {
     super.initState();
+
+    animeDetailsController.loadDetails(args.animeId);
   }
 
   void dispose() {
+    animeDetailsController.dispose();
     super.dispose();
   }
 
@@ -43,22 +46,33 @@ class _AnimeDetailsState extends State<AnimeDetails> {
         return Center(child: CircularProgressIndicator());
       }
 
+      List<Widget> items = [];
+
+      for (final episode in animeDetailsController.details.episodes) {
+        items.add(GestureDetector(
+            onTap: () {
+              Navigator.push(context, MaterialPageRoute(builder: episode.link));
+            },
+            child: Container(
+                alignment: Alignment.centerLeft,
+                color: Colors.black.withOpacity(0.1),
+                margin: EdgeInsets.symmetric(vertical: 5),
+                padding: EdgeInsets.all(20),
+                child: Text(episode.label))));
+      }
+
+      List<Widget> body = [];
+
+      body.add(AnimeDetailsHeader());
+      body.add(AnimeDetailsEpisodes(
+          episodes: animeDetailsController.details.episodes));
+
       return SingleChildScrollView(
-          child: SingleChildScrollView(
-        child: ConstrainedBox(
-          constraints: BoxConstraints(
-            minHeight: 0,
-          ),
-          child: IntrinsicHeight(
+        child: Container(
             child: Column(
-              children: [
-                AnimeDetailsHeader(),
-                AnimeDetailsEpisodes(),
-              ],
-            ),
-          ),
-        ),
-      ));
+          children: body,
+        )),
+      );
     }));
   }
 }

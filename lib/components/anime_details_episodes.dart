@@ -6,18 +6,35 @@ import "package:anime_dart/components/anime_details_episodes_tile.dart";
 class AnimeDetailsEpisodes extends StatelessWidget {
   final List<EpisodeInfo> episodes;
 
-  AnimeDetailsEpisodes({Key key, this.episodes}) : super(key: key);
+  AnimeDetailsEpisodes({Key key, @required this.episodes}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return ListView.separated(
-        padding: EdgeInsets.symmetric(horizontal: 30),
-        itemCount: episodes.length,
-        itemBuilder: (BuildContext context, int index) {
-          final episode = episodes[index];
-          return AnimeDetailsEpisodesTile(episode: episode);
-        },
-        separatorBuilder: (BuildContext context, int index) =>
-            Container(height: 20));
+    List<Widget> items = [];
+
+    for (final episode in episodes) {
+      items.add(GestureDetector(
+          onTap: () {
+            Navigator.push(context, MaterialPageRoute(builder: episode.link));
+          },
+          child: Container(
+              alignment: Alignment.centerLeft,
+              color: Colors.black.withOpacity(0.1),
+              margin: EdgeInsets.symmetric(vertical: 5),
+              padding: EdgeInsets.all(20),
+              child: Text(episode.label))));
+    }
+
+    List<Widget> body = [];
+
+    body.add(Container(
+        padding: EdgeInsets.symmetric(vertical: 20),
+        child: Column(children: items)));
+
+    return Container(
+      child: Column(
+        children: body,
+      ),
+    );
   }
 }

@@ -28,18 +28,23 @@ class _WatchButtonsState extends State<WatchButtons> {
         return Container(
           padding: EdgeInsets.all(20),
           child: Column(children: [
-            RippleButton(
-                color: AppTheme.primaryColor,
-                onTap: () {
-                  if (watchEpisodeController.videoUrlHd == null) {
-                    return;
-                  }
+            watchEpisodeController.videoUrlHd == null
+                ? (RippleButton(
+                    color: Colors.grey[600],
+                    onTap: () {},
+                    label: "Esse episódio não está disponível em HD"))
+                : (RippleButton(
+                    color: AppTheme.primaryColor,
+                    onTap: () {
+                      if (watchEpisodeController.videoUrlHd == null) {
+                        return;
+                      }
 
-                  Navigator.push(context, MaterialPageRoute(builder: (_) {
-                    return Player(url: watchEpisodeController.videoUrlHd);
-                  }));
-                },
-                label: "Assistir em HD"),
+                      Navigator.push(context, MaterialPageRoute(builder: (_) {
+                        return Player(url: watchEpisodeController.videoUrlHd);
+                      }));
+                    },
+                    label: "Assistir em HD")),
             RippleButton(
                 color: Colors.blue[600],
                 onTap: () {
