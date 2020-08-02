@@ -49,4 +49,11 @@ abstract class _SearchControllerBase with Store {
       notFound = false;
     });
   }
+
+  @action
+  dispose() {
+    text = "";
+    results = ObservableList<Resource>.of([]);
+    notFound = null;
+  }
 }

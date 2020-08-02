@@ -29,8 +29,6 @@ class _WatchEpisodeState extends State<WatchEpisode> {
   initState() {
     super.initState();
 
-    print("A Watch Episode Page foi criada");
-
     watchEpisodeController.setEpisodeInfo(
         animeIdValue: args.animeId,
         labelValue: args.label,
@@ -42,8 +40,6 @@ class _WatchEpisodeState extends State<WatchEpisode> {
 
   @override
   dispose() {
-    print("A Watch Episode Page foi desmontada");
-
     watchEpisodeController.dispose();
 
     super.dispose();

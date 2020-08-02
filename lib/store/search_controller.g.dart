@@ -91,6 +91,17 @@ mixin _$SearchController on _SearchControllerBase, Store {
   }
 
   @override
+  dynamic dispose() {
+    final _$actionInfo = _$_SearchControllerBaseActionController.startAction(
+        name: '_SearchControllerBase.dispose');
+    try {
+      return super.dispose();
+    } finally {
+      _$_SearchControllerBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
   String toString() {
     return '''
 text: ${text},

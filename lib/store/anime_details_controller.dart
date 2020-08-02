@@ -15,6 +15,21 @@ abstract class _AnimeDetailsControllerBase with Store {
   @observable
   bool error = false;
 
+  @observable
+  String internalSearch = "";
+
+  @observable
+  var filteredEpisodes = ObservableList<EpisodeInfo>.of([]);
+
+  @observable
+  bool showSearch = false;
+
+  @computed
+  bool get searchMode => internalSearch != "";
+
+  @computed
+  bool get notFoundInternalSearch => searchMode && filteredEpisodes.length == 0;
+
   @computed
   bool get loading => details == null && error == false;
 
@@ -36,8 +51,43 @@ abstract class _AnimeDetailsControllerBase with Store {
   }
 
   @action
+  showSearchField(bool yesOrNo) {
+    showSearch = yesOrNo;
+  }
+
+  @action
+  setInternalSearch(String keyword) {
+    internalSearch = keyword;
+  }
+
+  @action
+  closeSearchMode() {
+    showSearchField(false);
+    setInternalSearch("");
+    filteredEpisodes = ObservableList<EpisodeInfo>.of([]);
+  }
+
+  @action
+  filterEpisodes() {
+    int length = details.episodes.length;
+
+    filteredEpisodes = ObservableList<EpisodeInfo>.of([]);
+
+    for (int i = length - 1; i >= 0; i--) {
+      final episode = details.episodes[i];
+
+      if (episode.label.contains(internalSearch)) {
+        filteredEpisodes.add(episode);
+      }
+    }
+  }
+
+  @action
   dispose() {
     details = null;
     error = false;
+    showSearch = false;
+    internalSearch = "";
+    filteredEpisodes = ObservableList<EpisodeInfo>.of([]);
   }
 }

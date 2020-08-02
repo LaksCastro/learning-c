@@ -1,3 +1,5 @@
+import 'package:anime_dart/models/anime_details_args.dart';
+import 'package:anime_dart/screens/anime_details.dart';
 import 'package:anime_dart/services/anime_tv_api.dart';
 import 'package:flutter/material.dart';
 
@@ -15,6 +17,9 @@ class ResourceTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    double imageWidth = 100;
+    double imageHeight = 140;
+
     return GestureDetector(
         onTap: () =>
             Navigator.push(context, MaterialPageRoute(builder: resource.link)),
@@ -24,8 +29,8 @@ class ResourceTile extends StatelessWidget {
             color: Colors.black.withOpacity(.05),
             child: Row(crossAxisAlignment: CrossAxisAlignment.start, children: [
               Container(
-                  width: 80,
-                  height: 110,
+                  width: imageWidth,
+                  height: imageHeight,
                   child: ClipRRect(
                       borderRadius: BorderRadius.circular(5),
                       child: CachedNetworkImage(
@@ -33,12 +38,12 @@ class ResourceTile extends StatelessWidget {
                           httpHeaders: AnimeTvApi.httpHeaders,
                           imageUrl: resource.imageUrl,
                           placeholder: (context, url) => Container(
-                              width: 80,
-                              height: 110,
+                              width: imageWidth,
+                              height: imageHeight,
                               color: Colors.purple.withOpacity(.10)),
                           errorWidget: (context, url, error) => Container(
-                              width: 80,
-                              height: 110,
+                              width: imageWidth,
+                              height: imageHeight,
                               color: Colors.black.withOpacity(.60))))),
               Flexible(
                   child: Column(
@@ -61,7 +66,22 @@ class ResourceTile extends StatelessWidget {
                                 fontSize: Theme.of(context)
                                     .textTheme
                                     .subtitle1
-                                    .fontSize)))
+                                    .fontSize))),
+                    Container(
+                        padding: EdgeInsets.only(left: 10),
+                        child: FlatButton(
+                            color:
+                                Theme.of(context).primaryColor.withOpacity(0.1),
+                            onPressed: () {
+                              Navigator.push(context,
+                                  MaterialPageRoute(builder: (_) {
+                                return AnimeDetails(
+                                    args: AnimeDetailsArgs(
+                                        animeId: resource.linkId ?? resource.id,
+                                        title: resource.label));
+                              }));
+                            },
+                            child: Text("Listar episódios")))
                   ]))
             ])));
   }
