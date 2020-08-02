@@ -51,7 +51,10 @@ class _SearchState extends State<Search> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-            backgroundColor: Theme.of(context).backgroundColor,
+            iconTheme: IconThemeData(
+              color: Theme.of(context).textTheme.bodyText1.color,
+            ),
+            backgroundColor: Theme.of(context).scaffoldBackgroundColor,
             title: TextField(
                 autofocus: true,
                 cursorColor: Theme.of(context).textTheme.bodyText1.color,
@@ -61,10 +64,17 @@ class _SearchState extends State<Search> {
         body: Observer(
           builder: (_) {
             if (_searchController.waitingType) {
-              return Container(
-                  alignment: Alignment.center,
-                  padding: EdgeInsets.all(20),
-                  child: Text("Digite o nome de um anime para procurar..."));
+              return Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Flexible(
+                      child: Container(
+                          alignment: Alignment.center,
+                          padding: EdgeInsets.all(20),
+                          child: Text(
+                              "Digite o nome de um anime para procurar...")))
+                ],
+              );
             }
 
             if (_searchController.loading) {
@@ -72,11 +82,17 @@ class _SearchState extends State<Search> {
             }
 
             if (_searchController.notFound) {
-              return Container(
-                  alignment: Alignment.center,
-                  padding: EdgeInsets.all(20),
-                  child: Text(
-                      "Anime não encontrado, tente outra palavra chave..."));
+              return Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Flexible(
+                      child: Container(
+                          alignment: Alignment.center,
+                          padding: EdgeInsets.all(20),
+                          child: Text(
+                              "Anime não encontrado, tente outra palavra chave...")))
+                ],
+              );
             }
 
             return ResourceList(
