@@ -7,8 +7,6 @@ import 'package:anime_dart/constants/tabs.dart';
 
 import 'package:anime_dart/store/barrel.dart';
 
-import 'package:outline_material_icons/outline_material_icons.dart';
-
 import 'package:anime_dart/theme/main.dart';
 
 import 'package:provider/provider.dart';

@@ -7,7 +7,7 @@ import "package:anime_dart/components/barrel.dart";
 import 'package:flutter_mobx/flutter_mobx.dart';
 
 class AnimeDetails extends StatefulWidget {
-  final AnimeInfoArgs args;
+  final AnimeDetailsArgs args;
 
   AnimeDetails({this.args});
 
@@ -16,7 +16,7 @@ class AnimeDetails extends StatefulWidget {
 }
 
 class _AnimeDetailsState extends State<AnimeDetails> {
-  final AnimeInfoArgs args;
+  final AnimeDetailsArgs args;
   final animeDetailsController = getIt<AnimeDetailsController>();
 
   _AnimeDetailsState({this.args});

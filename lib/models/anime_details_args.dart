@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
-class AnimeInfoArgs {
+class AnimeDetailsArgs {
   final String animeId;
   final String title;
 
-  AnimeInfoArgs({@required this.animeId, @required this.title});
+  AnimeDetailsArgs({@required this.animeId, @required this.title});
 }
