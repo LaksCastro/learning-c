@@ -9,13 +9,6 @@ part of 'watch_episode_controller.dart';
 // ignore_for_file: non_constant_identifier_names, unnecessary_brace_in_string_interps, unnecessary_lambdas, prefer_expression_function_bodies, lines_longer_than_80_chars, avoid_as, avoid_annotating_with_dynamic
 
 mixin _$WatchEpisodeController on _WatchEpisodeControllerBase, Store {
-  Computed<bool> _$episodeInfoLoadedComputed;
-
-  @override
-  bool get episodeInfoLoaded => (_$episodeInfoLoadedComputed ??= Computed<bool>(
-          () => super.episodeInfoLoaded,
-          name: '_WatchEpisodeControllerBase.episodeInfoLoaded'))
-      .value;
   Computed<bool> _$loadingVideoUrlComputed;
 
   @override
@@ -164,7 +157,6 @@ episodeId: ${episodeId},
 videoUrlHd: ${videoUrlHd},
 videoUrl: ${videoUrl},
 animeId: ${animeId},
-episodeInfoLoaded: ${episodeInfoLoaded},
 loadingVideoUrl: ${loadingVideoUrl}
     ''';
   }

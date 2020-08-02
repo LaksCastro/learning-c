@@ -30,10 +30,6 @@ abstract class _WatchEpisodeControllerBase with Store {
   String animeId;
 
   @computed
-  bool get episodeInfoLoaded =>
-      label != null && imageUrl != null && episodeId != null;
-
-  @computed
   bool get loadingVideoUrl => videoUrl == null;
 
   @action
@@ -50,8 +46,9 @@ abstract class _WatchEpisodeControllerBase with Store {
 
   @action
   loadVideoUrl() async {
-    if (!episodeInfoLoaded) {
-      return;
+    if (episodeId == null) {
+      throw Exception(
+          "You need set the episode info before to call loadVideoUrl action");
     }
 
     final videoResource = await _provider.getVideo(episodeId);

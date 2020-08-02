@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 
 import "package:anime_dart/models/watch_episode_args.dart";
 import "package:anime_dart/components/barrel.dart";
+import 'package:flutter_mobx/flutter_mobx.dart';
 
 class WatchEpisode extends StatefulWidget {
   final WatchEpisodeArgs args;
@@ -21,6 +22,7 @@ class _WatchEpisodeState extends State<WatchEpisode> {
   final watchEpisodeController = getIt<WatchEpisodeController>();
 
   _WatchEpisodeState({this.args});
+
   @override
   void initState() {
     watchEpisodeController.setEpisodeInfo(
@@ -52,8 +54,23 @@ class _WatchEpisodeState extends State<WatchEpisode> {
             child: IntrinsicHeight(
               child: Column(
                 children: [
-                  WatchEpisodeHeader(),
-                  WatchButtons(),
+                  WatchEpisodeHeader(
+                    imageUrl: args.imageUrl,
+                    label: args.label,
+                  ),
+                  Observer(builder: (_) {
+                    if (watchEpisodeController.loadingVideoUrl) {
+                      return Container(
+                          padding: EdgeInsets.symmetric(
+                              vertical: 50, horizontal: 20),
+                          child: CircularProgressIndicator());
+                    }
+
+                    return WatchButtons(
+                      videoUrlHd: watchEpisodeController.videoUrlHd,
+                      videoUrl: watchEpisodeController.videoUrl,
+                    );
+                  })
                 ],
               ),
             ),
