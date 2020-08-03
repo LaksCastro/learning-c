@@ -42,9 +42,8 @@ class WatchButtons extends StatelessWidget {
 
                       Navigator.push(context, MaterialPageRoute(builder: (_) {
                         return Player(
-                            url: videoUrlHd,
-                            enterOrientation:
-                                MediaQuery.of(context).orientation);
+                          url: videoUrlHd,
+                        );
                       }));
                     },
                     label: "Assistir em HD")),
@@ -56,9 +55,7 @@ class WatchButtons extends StatelessWidget {
                   }
 
                   Navigator.push(context, MaterialPageRoute(builder: (_) {
-                    return Player(
-                        url: videoUrl,
-                        enterOrientation: MediaQuery.of(context).orientation);
+                    return Player(url: videoUrl);
                   }));
                 },
                 label: "Assistir"),

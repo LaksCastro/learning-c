@@ -6,33 +6,45 @@ import 'package:video_player/video_player.dart';
 
 class Player extends StatefulWidget {
   final String url;
-  final Orientation enterOrientation;
 
-  Player({@required this.url, @required this.enterOrientation});
+  Player({this.url});
 
   @override
   State<StatefulWidget> createState() {
-    return _PlayerState(url: url, enterOrientation: enterOrientation);
+    return _PlayerState(url: url);
   }
 }
 
 class _PlayerState extends State<Player> {
   VideoPlayerController _videoPlayerController;
   ChewieController _chewieController;
-  Orientation enterOrientation;
-
   final String url;
 
-  _PlayerState({this.url, this.enterOrientation});
+  _PlayerState({this.url});
 
   initializePlayerController() async {
+    SystemChrome.setEnabledSystemUIOverlays([SystemUiOverlay.bottom]);
+    SystemChrome.setPreferredOrientations(
+        [DeviceOrientation.landscapeLeft, DeviceOrientation.landscapeRight]);
+
     await _videoPlayerController.initialize();
     await _videoPlayerController.play();
 
-    await SystemChrome.setEnabledSystemUIOverlays([SystemUiOverlay.bottom]);
-
-    await SystemChrome.setPreferredOrientations(
-        [DeviceOrientation.landscapeLeft, DeviceOrientation.landscapeRight]);
+    setState(() {
+      _chewieController = ChewieController(
+        videoPlayerController: _videoPlayerController,
+        autoPlay: true,
+        aspectRatio: _videoPlayerController.value.aspectRatio,
+        allowedScreenSleep: false,
+        allowFullScreen: true,
+        fullScreenByDefault: true,
+        placeholder: Container(
+          color: Colors.black,
+        ),
+        autoInitialize: true,
+      );
+      _chewieController.enterFullScreen();
+    });
   }
 
   @override
@@ -51,6 +63,7 @@ class _PlayerState extends State<Player> {
 
     SystemChrome.setEnabledSystemUIOverlays(
         [SystemUiOverlay.bottom, SystemUiOverlay.top]);
+
     SystemChrome.setPreferredOrientations([
       DeviceOrientation.landscapeLeft,
       DeviceOrientation.landscapeRight,
@@ -70,7 +83,7 @@ class _PlayerState extends State<Player> {
             ? Center(child: CircularProgressIndicator())
             : (Container(
                 child: Column(
-                children: [
+                children: <Widget>[
                   Expanded(
                     child: Center(
                       child: Chewie(
