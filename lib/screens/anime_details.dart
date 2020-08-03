@@ -85,8 +85,15 @@ class _AnimeDetailsState extends State<AnimeDetails> {
               Expanded(
                   child: TextField(
                       autofocus: true,
-                      cursorColor: Theme.of(context).textTheme.bodyText1.color,
+                      style: TextStyle(
+                          color: Theme.of(context).primaryIconTheme.color),
+                      cursorColor: Theme.of(context).primaryIconTheme.color,
                       decoration: InputDecoration.collapsed(
+                          hintStyle: TextStyle(
+                              color: Theme.of(context)
+                                  .primaryIconTheme
+                                  .color
+                                  .withOpacity(0.5)),
                           hintText: 'Digite o número do episódio'),
                       controller: _searchQuery)),
               GestureDetector(
@@ -146,7 +153,7 @@ class _AnimeDetailsState extends State<AnimeDetails> {
           );
         }),
         floatingActionButton: FloatingActionButton(
-            backgroundColor: Theme.of(context).scaffoldBackgroundColor,
+            backgroundColor: Theme.of(context).backgroundColor,
             onPressed: () {},
             child: Icon(Icons.favorite, color: Colors.red[300])));
   }

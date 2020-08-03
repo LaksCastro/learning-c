@@ -57,11 +57,17 @@ class _SearchState extends State<Search> {
             iconTheme: IconThemeData(
               color: Theme.of(context).textTheme.bodyText1.color,
             ),
-            backgroundColor: Theme.of(context).scaffoldBackgroundColor,
+            backgroundColor: Theme.of(context).backgroundColor,
             title: TextField(
                 autofocus: true,
                 cursorColor: Theme.of(context).textTheme.bodyText1.color,
                 decoration: InputDecoration.collapsed(
+                    hintStyle: TextStyle(
+                        color: Theme.of(context)
+                            .textTheme
+                            .bodyText1
+                            .color
+                            .withOpacity(0.5)),
                     hintText: 'Digite uma palavra chave'),
                 controller: _searchQuery)),
         body: Observer(

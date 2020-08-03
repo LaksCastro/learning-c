@@ -17,16 +17,32 @@ class ResourceTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    double imageWidth = 100;
-    double imageHeight = 140;
+    double imageWidth = 80;
+    double imageHeight = 115;
 
     return GestureDetector(
         onTap: () =>
             Navigator.push(context, MaterialPageRoute(builder: resource.link)),
         child: Container(
+            decoration: BoxDecoration(
+                color: Theme.of(context).backgroundColor,
+                border: Border(
+                    bottom: BorderSide(
+                        color: Theme.of(context)
+                            .colorScheme
+                            .secondary
+                            .withOpacity(0.5),
+                        style: BorderStyle.solid,
+                        width: 1),
+                    top: BorderSide(
+                        color: Theme.of(context)
+                            .colorScheme
+                            .secondary
+                            .withOpacity(0.5),
+                        style: BorderStyle.solid,
+                        width: 1))),
             margin: EdgeInsets.only(bottom: isLast ? 0 : 10),
             padding: EdgeInsets.all(10),
-            color: Colors.black.withOpacity(.05),
             child: Row(crossAxisAlignment: CrossAxisAlignment.start, children: [
               Container(
                   width: imageWidth,
@@ -40,48 +56,53 @@ class ResourceTile extends StatelessWidget {
                           placeholder: (context, url) => Container(
                               width: imageWidth,
                               height: imageHeight,
-                              color: Colors.purple.withOpacity(.10)),
+                              color: Theme.of(context)
+                                  .colorScheme
+                                  .secondary
+                                  .withOpacity(.10)),
                           errorWidget: (context, url, error) => Container(
                               width: imageWidth,
                               height: imageHeight,
-                              color: Colors.black.withOpacity(.60))))),
+                              color: Theme.of(context)
+                                  .colorScheme
+                                  .secondary
+                                  .withOpacity(.10)
+                                  .withOpacity(.60))))),
               Flexible(
                   child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
+                      mainAxisAlignment: MainAxisAlignment.end,
                       children: [
                     Container(
-                      margin: EdgeInsets.only(top: 10, left: 10, right: 10),
-                      padding: EdgeInsets.all(5),
-                      decoration: BoxDecoration(
-                          color: Theme.of(context).primaryColor,
-                          borderRadius: BorderRadius.circular(5)),
-                      child: Text(cardLabel,
-                          style: TextStyle(color: Colors.white, fontSize: 12)),
-                    ),
-                    Container(
-                        padding: EdgeInsets.all(10),
-                        child: Text(resource.label,
-                            textAlign: TextAlign.left,
-                            style: TextStyle(
-                                fontSize: Theme.of(context)
-                                    .textTheme
-                                    .subtitle1
-                                    .fontSize))),
-                    Container(
-                        padding: EdgeInsets.only(left: 10),
-                        child: FlatButton(
-                            color:
-                                Theme.of(context).primaryColor.withOpacity(0.1),
-                            onPressed: () {
-                              Navigator.push(context,
-                                  MaterialPageRoute(builder: (_) {
-                                return AnimeDetails(
-                                    args: AnimeDetailsArgs(
-                                        animeId: resource.linkId ?? resource.id,
-                                        title: resource.label));
-                              }));
-                            },
-                            child: Text("Listar episódios")))
+                        alignment: Alignment.centerLeft,
+                        child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Container(
+                                margin: EdgeInsets.only(
+                                    top: 10, left: 10, right: 10),
+                                padding: EdgeInsets.all(5),
+                                decoration: BoxDecoration(
+                                    color:
+                                        Theme.of(context).colorScheme.secondary,
+                                    borderRadius: BorderRadius.circular(5)),
+                                child: Text(cardLabel,
+                                    style: TextStyle(
+                                        color: Theme.of(context)
+                                            .colorScheme
+                                            .onSecondary,
+                                        fontSize: 12)),
+                              ),
+                              Container(
+                                  padding: EdgeInsets.all(10),
+                                  child: Text(resource.label,
+                                      textAlign: TextAlign.left,
+                                      style: TextStyle(
+                                          height: 1.5,
+                                          fontSize: Theme.of(context)
+                                              .textTheme
+                                              .subtitle1
+                                              .fontSize)))
+                            ])),
                   ]))
             ])));
   }

@@ -55,27 +55,29 @@ class _WatchEpisodeState extends State<WatchEpisode> {
               minHeight: 0,
             ),
             child: IntrinsicHeight(
-              child: Column(
-                children: [
-                  WatchEpisodeHeader(
-                    imageUrl: args.imageUrl,
-                    label: args.label,
-                  ),
-                  Observer(builder: (_) {
-                    if (watchEpisodeController.loadingVideoUrl) {
-                      return Container(
-                          padding: EdgeInsets.symmetric(
-                              vertical: 50, horizontal: 20),
-                          child: CircularProgressIndicator());
-                    }
+              child: Container(
+                  margin: EdgeInsets.only(bottom: 60),
+                  child: Column(
+                    children: [
+                      WatchEpisodeHeader(
+                        imageUrl: args.imageUrl,
+                        label: args.label,
+                      ),
+                      Observer(builder: (_) {
+                        if (watchEpisodeController.loadingVideoUrl) {
+                          return Container(
+                              padding: EdgeInsets.symmetric(
+                                  vertical: 100, horizontal: 20),
+                              child: CircularProgressIndicator());
+                        }
 
-                    return WatchButtons(
-                      videoUrlHd: watchEpisodeController.videoUrlHd,
-                      videoUrl: watchEpisodeController.videoUrl,
-                    );
-                  })
-                ],
-              ),
+                        return WatchButtons(
+                          videoUrlHd: watchEpisodeController.videoUrlHd,
+                          videoUrl: watchEpisodeController.videoUrl,
+                        );
+                      })
+                    ],
+                  )),
             ),
           ),
         ),

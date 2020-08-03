@@ -24,11 +24,17 @@ class AnimeDetailsHeader extends StatelessWidget {
     }
 
     return Container(
-        color: Colors.black.withOpacity(.1),
-        padding: EdgeInsets.only(left: 20, top: 20, bottom: 20),
+        decoration: BoxDecoration(
+            color: Theme.of(context).backgroundColor,
+            border: Border(
+                left: BorderSide(
+                    color: Theme.of(context).colorScheme.secondary,
+                    style: BorderStyle.solid,
+                    width: 2))),
         child: Column(children: [
           Row(crossAxisAlignment: CrossAxisAlignment.start, children: [
             Container(
+                margin: EdgeInsets.only(top: 20, left: 20),
                 width: 140,
                 height: 200,
                 child: ClipRRect(
@@ -57,7 +63,7 @@ class AnimeDetailsHeader extends StatelessWidget {
                           children: [
                             Container(
                               margin:
-                                  EdgeInsets.only(top: 10, left: 10, right: 10),
+                                  EdgeInsets.only(top: 30, left: 10, right: 10),
                               padding: EdgeInsets.all(5),
                               decoration: BoxDecoration(
                                   color: Theme.of(context).primaryColor,
@@ -69,17 +75,20 @@ class AnimeDetailsHeader extends StatelessWidget {
                             Container(
                                 width: double.infinity,
                                 decoration: BoxDecoration(
-                                    color: Colors.black.withOpacity(0.1),
+                                    color: Theme.of(context)
+                                        .colorScheme
+                                        .secondary
+                                        .withOpacity(0.05),
                                     border: Border(
                                         left: BorderSide(
                                             color: Theme.of(context)
-                                                .textTheme
-                                                .bodyText2
-                                                .color,
+                                                .colorScheme
+                                                .secondary,
                                             style: BorderStyle.solid,
                                             width: 2))),
                                 margin: EdgeInsets.only(top: 10),
-                                padding: EdgeInsets.all(10),
+                                padding: EdgeInsets.only(
+                                    top: 20, bottom: 20, left: 10, right: 10),
                                 child: Text(details.title,
                                     textAlign: TextAlign.left,
                                     style: TextStyle(
@@ -95,7 +104,7 @@ class AnimeDetailsHeader extends StatelessWidget {
           ]),
           Container(
               alignment: Alignment.centerLeft,
-              padding: EdgeInsets.only(top: 10, right: 10),
+              padding: EdgeInsets.symmetric(vertical: 20, horizontal: 20),
               child: Text(details.description, style: TextStyle(height: 2)))
         ]));
   }

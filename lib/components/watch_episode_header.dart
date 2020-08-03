@@ -11,7 +11,7 @@ class WatchEpisodeHeader extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-        color: Colors.black.withOpacity(.1),
+        color: Theme.of(context).backgroundColor,
         padding: EdgeInsets.only(top: 20, bottom: 20, left: 20),
         child: Row(crossAxisAlignment: CrossAxisAlignment.start, children: [
           Container(
@@ -26,11 +26,17 @@ class WatchEpisodeHeader extends StatelessWidget {
                       placeholder: (context, url) => Container(
                           width: 140,
                           height: 200,
-                          color: Colors.purple.withOpacity(.10)),
+                          color: Theme.of(context)
+                              .colorScheme
+                              .secondary
+                              .withOpacity(.30)),
                       errorWidget: (context, url, error) => Container(
                           width: 140,
                           height: 200,
-                          color: Colors.black.withOpacity(.60))))),
+                          color: Theme.of(context)
+                              .colorScheme
+                              .secondary
+                              .withOpacity(.90))))),
           Flexible(
               child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -53,20 +59,24 @@ class WatchEpisodeHeader extends StatelessWidget {
                       Container(
                           width: double.infinity,
                           decoration: BoxDecoration(
-                              color: Colors.black.withOpacity(0.1),
+                              color: Theme.of(context)
+                                  .colorScheme
+                                  .secondary
+                                  .withOpacity(0.05),
                               border: Border(
                                   left: BorderSide(
                                       color: Theme.of(context)
-                                          .textTheme
-                                          .bodyText2
-                                          .color,
+                                          .colorScheme
+                                          .secondary,
                                       style: BorderStyle.solid,
                                       width: 2))),
                           margin: EdgeInsets.only(top: 10),
-                          padding: EdgeInsets.all(10),
+                          padding: EdgeInsets.only(
+                              top: 20, bottom: 20, left: 10, right: 10),
                           child: Text(label,
                               textAlign: TextAlign.left,
                               style: TextStyle(
+                                  height: 1.5,
                                   fontSize: Theme.of(context)
                                       .textTheme
                                       .subtitle1

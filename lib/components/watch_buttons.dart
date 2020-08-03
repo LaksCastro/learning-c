@@ -11,40 +11,100 @@ class WatchButtons extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Expanded(
-      child: Container(
-        padding: EdgeInsets.all(20),
-        child: Column(children: [
-          videoUrlHd == null
-              ? (RippleButton(
-                  color: Colors.grey[600],
-                  onTap: () {},
-                  label: "Esse episódio não está disponível em HD"))
-              : (RippleButton(
-                  color: Theme.of(context).colorScheme.secondary,
-                  onTap: () {
-                    if (videoUrlHd == null) {
-                      return;
-                    }
+      child: Column(children: [
+        Container(
+          margin: EdgeInsets.only(top: 20),
+          color: Theme.of(context).backgroundColor,
+          padding: EdgeInsets.all(20),
+          child: Column(children: [
+            Container(
+                alignment: Alignment.centerLeft,
+                child: Text("Assistir Online:",
+                    style: TextStyle(
+                        fontSize: 12,
+                        color: Theme.of(context)
+                            .textTheme
+                            .bodyText1
+                            .color
+                            .withOpacity(0.5)))),
+            videoUrlHd == null
+                ? (RippleButton(
+                    color: Colors.black26,
+                    onTap: () {},
+                    label: "Esse episódio não está disponível em HD"))
+                : (RippleButton(
+                    color: Theme.of(context).colorScheme.secondary,
+                    onTap: () {
+                      if (videoUrlHd == null) {
+                        return;
+                      }
 
-                    Navigator.push(context, MaterialPageRoute(builder: (_) {
-                      return Player(url: videoUrlHd);
-                    }));
-                  },
-                  label: "Assistir em HD")),
-          RippleButton(
-              color: Theme.of(context).colorScheme.secondaryVariant,
-              onTap: () {
-                if (videoUrl == null) {
-                  return;
-                }
+                      Navigator.push(context, MaterialPageRoute(builder: (_) {
+                        return Player(url: videoUrlHd);
+                      }));
+                    },
+                    label: "Assistir em HD")),
+            RippleButton(
+                color: Theme.of(context).colorScheme.secondaryVariant,
+                onTap: () {
+                  if (videoUrl == null) {
+                    return;
+                  }
 
-                Navigator.push(context, MaterialPageRoute(builder: (_) {
-                  return Player(url: videoUrl);
-                }));
-              },
-              label: "Assistir"),
-        ]),
-      ),
+                  Navigator.push(context, MaterialPageRoute(builder: (_) {
+                    return Player(url: videoUrl);
+                  }));
+                },
+                label: "Assistir"),
+          ]),
+        ),
+        Container(
+          margin: EdgeInsets.symmetric(vertical: 20),
+          color: Theme.of(context).backgroundColor,
+          padding: EdgeInsets.all(20),
+          child: Column(children: [
+            Container(
+                alignment: Alignment.centerLeft,
+                child: Text("Fazer Download:",
+                    style: TextStyle(
+                        fontSize: 12,
+                        color: Theme.of(context)
+                            .textTheme
+                            .bodyText1
+                            .color
+                            .withOpacity(0.5)))),
+            videoUrlHd == null
+                ? (RippleButton(
+                    color: Colors.black26,
+                    onTap: () {},
+                    label: "Esse episódio não está disponível em HD"))
+                : (RippleButton(
+                    color: Theme.of(context).colorScheme.secondary,
+                    onTap: () {
+                      if (videoUrlHd == null) {
+                        return;
+                      }
+
+                      Navigator.push(context, MaterialPageRoute(builder: (_) {
+                        return Player(url: videoUrlHd);
+                      }));
+                    },
+                    label: "Download em HD")),
+            RippleButton(
+                color: Theme.of(context).colorScheme.secondaryVariant,
+                onTap: () {
+                  if (videoUrl == null) {
+                    return;
+                  }
+
+                  Navigator.push(context, MaterialPageRoute(builder: (_) {
+                    return Player(url: videoUrl);
+                  }));
+                },
+                label: "Download"),
+          ]),
+        )
+      ]),
     );
   }
 }

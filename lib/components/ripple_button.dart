@@ -10,27 +10,29 @@ class RippleButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-        margin: EdgeInsets.only(bottom: 20),
+        margin: EdgeInsets.symmetric(vertical: 10),
         child: SizedBox(
             width: double.infinity,
-            child: Container(
-              decoration: BoxDecoration(
-                  color: color, borderRadius: BorderRadius.circular(5)),
-              child: Material(
-                child: InkWell(
-                  onTap: onTap,
-                  child: Container(
-                      alignment: Alignment.center,
-                      padding:
-                          EdgeInsets.symmetric(horizontal: 10, vertical: 20),
-                      child: Text(label,
-                          style: TextStyle(
-                              fontWeight: FontWeight.bold,
-                              color:
-                                  Theme.of(context).colorScheme.onSecondary))),
-                ),
-                color: Colors.transparent,
-              ),
-            )));
+            child: ClipRRect(
+                borderRadius: BorderRadius.circular(5),
+                child: Container(
+                  decoration: BoxDecoration(color: color),
+                  child: Material(
+                    child: InkWell(
+                      onTap: onTap,
+                      child: Container(
+                          alignment: Alignment.center,
+                          padding: EdgeInsets.symmetric(
+                              horizontal: 10, vertical: 20),
+                          child: Text(label,
+                              style: TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                  color: Theme.of(context)
+                                      .colorScheme
+                                      .onSecondary))),
+                    ),
+                    color: Colors.transparent,
+                  ),
+                ))));
   }
 }

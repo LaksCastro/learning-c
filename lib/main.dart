@@ -27,8 +27,8 @@ class AnimeDartApp extends StatelessWidget {
         ],
         child: MaterialApp(
           title: 'Anime Dart',
-          theme: AppTheme.data,
-          darkTheme: AppDarkTheme.data,
+          theme: AppTheme.data(context),
+          darkTheme: AppDarkTheme.data(context),
           home: DefaultTabController(
               length: MainTabs.tabs.length,
               child: MyHomePage(title: 'Anime Dart')),

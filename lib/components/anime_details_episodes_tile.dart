@@ -1,5 +1,6 @@
 import 'package:anime_dart/models/barrel.dart';
 import 'package:flutter/material.dart';
+import 'package:outline_material_icons/outline_material_icons.dart';
 
 class AnimeDetailsEpisodesTile extends StatelessWidget {
   final EpisodeInfo episode;
@@ -14,15 +15,21 @@ class AnimeDetailsEpisodesTile extends StatelessWidget {
         },
         child: Container(
             alignment: Alignment.centerLeft,
-            color: Colors.black.withOpacity(0.1),
+            color: Theme.of(context).backgroundColor,
             margin: EdgeInsets.symmetric(vertical: 5),
             padding: EdgeInsets.all(20),
             child: Row(children: [
-              Icon(Icons.play_arrow),
+              Icon(OMIcons.playArrow,
+                  color: Theme.of(context)
+                      .textTheme
+                      .bodyText1
+                      .color
+                      .withOpacity(0.5)),
               Flexible(
                   child: Container(
                       margin: EdgeInsets.only(left: 10),
-                      child: Text(episode.label))),
+                      child:
+                          Text(episode.label, style: TextStyle(height: 1.5)))),
             ])));
   }
 }
