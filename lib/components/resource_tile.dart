@@ -1,5 +1,3 @@
-import 'package:anime_dart/models/anime_details_args.dart';
-import 'package:anime_dart/screens/anime_details.dart';
 import 'package:anime_dart/services/anime_tv_api.dart';
 import 'package:flutter/material.dart';
 

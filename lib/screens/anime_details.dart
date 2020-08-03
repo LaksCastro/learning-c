@@ -7,7 +7,6 @@ import 'package:flutter/material.dart';
 import "package:anime_dart/models/barrel.dart";
 import "package:anime_dart/components/barrel.dart";
 import 'package:flutter_mobx/flutter_mobx.dart';
-import 'package:mobx/mobx.dart';
 
 class AnimeDetails extends StatefulWidget {
   final AnimeDetailsArgs args;
