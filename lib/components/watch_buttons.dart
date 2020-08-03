@@ -1,5 +1,6 @@
 import 'package:anime_dart/components/ripple_button.dart';
 import 'package:anime_dart/screens/player.dart';
+import 'package:anime_dart/utils/main.dart';
 import 'package:flutter/material.dart';
 
 class WatchButtons extends StatelessWidget {
@@ -84,22 +85,21 @@ class WatchButtons extends StatelessWidget {
                       if (videoUrlHd == null) {
                         return;
                       }
-
-                      Navigator.push(context, MaterialPageRoute(builder: (_) {
-                        return Player(url: videoUrlHd);
-                      }));
+                      Utils.openUrl(videoUrlHd);
                     },
                     label: "Download em HD")),
             RippleButton(
                 color: Theme.of(context).colorScheme.secondaryVariant,
-                onTap: () {
+                onTap: () async {
                   if (videoUrl == null) {
                     return;
                   }
 
-                  Navigator.push(context, MaterialPageRoute(builder: (_) {
-                    return Player(url: videoUrl);
-                  }));
+                  try {
+                    await Utils.openUrl(videoUrl);
+                  } catch (e) {
+                    print(e);
+                  }
                 },
                 label: "Download"),
           ]),

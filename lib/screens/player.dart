@@ -75,6 +75,7 @@ class _PlayerState extends State<Player> {
   @override
   Widget build(BuildContext context) {
     return Material(
+        color: Theme.of(context).scaffoldBackgroundColor,
         elevation: 0,
         child: (_chewieController == null)
             ? Center(child: CircularProgressIndicator())

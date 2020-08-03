@@ -22,23 +22,7 @@ class ResourceTile extends StatelessWidget {
         onTap: () =>
             Navigator.push(context, MaterialPageRoute(builder: resource.link)),
         child: Container(
-            decoration: BoxDecoration(
-                color: Theme.of(context).backgroundColor,
-                border: Border(
-                    bottom: BorderSide(
-                        color: Theme.of(context)
-                            .colorScheme
-                            .secondary
-                            .withOpacity(0.5),
-                        style: BorderStyle.solid,
-                        width: 1),
-                    top: BorderSide(
-                        color: Theme.of(context)
-                            .colorScheme
-                            .secondary
-                            .withOpacity(0.5),
-                        style: BorderStyle.solid,
-                        width: 1))),
+            decoration: BoxDecoration(color: Theme.of(context).backgroundColor),
             margin: EdgeInsets.only(bottom: isLast ? 0 : 10),
             padding: EdgeInsets.all(10),
             child: Row(crossAxisAlignment: CrossAxisAlignment.start, children: [
