@@ -119,3 +119,22 @@ Apesar de estar com um código horrível, algumas features ainda estão funciona
     </td>
   </tbody>
 </table>
+
+## Isso é tudo pessoal
+O projeto morre aqui, mas renasce das cinzas [neste repositório](https://github.com/LaksCastro/anime-dart), mais completo e mais bem estruturado
+
+<br>
+<br>
+<br>
+<br>
+
+<h2 align="center">
+  Open Source
+</h2>
+<p align="center">
+  <sub>Copyright © 2020-present, Laks Castro.</sub>
+</p>
+<p align="center">Anime Dart <a href="https://github.com/LaksCastro/anime-dart/blob/master/LICENSE.md">is MIT licensed 💖</a></p>
+<p align="center">
+  <img src="/assets/flutter.png" width="35" />
+</p>
