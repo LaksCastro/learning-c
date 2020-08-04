@@ -42,3 +42,80 @@ Apesar de estar com um código horrível, algumas features ainda estão funciona
     </td>
   </tbody>
 </table>
+
+<table>
+  <thead>
+    <th>
+      <img src="/assets/d-search-with-results.jpeg" width="80">
+    </th>
+    <th>
+      <img src="/assets/d-watch.jpeg" width="80">
+    </th>
+  </thead>
+  <tbody>
+    <td>
+      Página de buscar animes com resultados
+    </td>
+    <td>
+      Página de assistir um anime
+    </td>
+  </tbody>
+</table>
+
+#### Light Mode
+<table>
+  <thead>
+    <th>
+      <img src="/assets/l-home.jpeg" width="80">
+    </th>
+    <th>
+      <img src="/assets/l-episodes.jpeg" width="80">
+    </th>
+  </thead>
+  <tbody>
+    <td>
+      Página Inicial
+    </td>
+    <td>
+      Listagem de episódios
+    </td>
+  </tbody>
+</table>
+
+<table>
+  <thead>
+    <th>
+      <img src="/assets/l-search.jpeg" width="80">
+    </th>
+    <th>
+      <img src="/assets/l-search-ep.jpeg" width="80">
+    </th>
+  </thead>
+  <tbody>
+    <td>
+      Página de buscar animes
+    </td>
+    <td>
+      Feature de filtrar episódios
+    </td>
+  </tbody>
+</table>
+
+<table>
+  <thead>
+    <th>
+      <img src="/assets/l-search-with-results.jpeg" width="80">
+    </th>
+    <th>
+      <img src="/assets/l-watch.jpeg" width="80">
+    </th>
+  </thead>
+  <tbody>
+    <td>
+      Página de buscar animes com resultados
+    </td>
+    <td>
+      Página de assistir um anime
+    </td>
+  </tbody>
+</table>
